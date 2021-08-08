@@ -1,3 +1,6 @@
+const { curryN } = require("ramda");
+const https = require("https");
+
 function makeRequest(requestOptions, postData) {
   return new Promise((resolve, reject) => {
     const req = https.request(requestOptions, (res) => {
@@ -27,4 +30,6 @@ function makeRequest(requestOptions, postData) {
   });
 }
 
-module.exports = makeRequest;
+const curriedMakeRequest = curryN(3, makeRequest);
+
+module.exports = { makeRequest, curriedMakeRequest };
