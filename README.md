@@ -6,7 +6,7 @@ For this task we ask you to write an API server that will connect with a simplif
 
 Our implementation allows for pagination as specified in the specification. Where we differ is the actual URL to get the transactions.
 
-We have begun the API server with a skeleton server and swagger document (that can be accessed from the running server on the `/doc` endpoint.)
+We have begun the API server with a skeleton server and swagger document (that can be accessed from the running server on the `/docs` endpoint.)
 
 ## Banking Institution Server
 
