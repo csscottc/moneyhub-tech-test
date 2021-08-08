@@ -1,4 +1,5 @@
 const { curriedMakeRequest } = require("./makeRequest");
+const R = require("ramda");
 
 // Might be worth urlencoding this
 const postData = `scope=transactions&grant_type=client_credentials`;
@@ -17,7 +18,7 @@ const requestOptions = {
   },
 };
 
-const makeRequestToMockServer = curriedMakeRequest(requestOptions)(postData);
+const makeRequestToMockServer = curriedMakeRequest(requestOptions, postData);
 
 /*
  * Expects a function that returns a Promise<response>

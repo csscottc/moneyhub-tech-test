@@ -1,4 +1,4 @@
-const { getToken } = require("../getToken");
+const { getToken, makeRequestToMockServer } = require("../getToken");
 
 
 describe("getToken", () => {
@@ -7,5 +7,11 @@ describe("getToken", () => {
         const mockRequestMaker = () => Promise.resolve(mockRequestResponse);
         const token = await getToken(mockRequestMaker);
         expect(token).toBe("thisisafaketoken");
+    });
+
+    // This is more of an integration test, and its not particularly great
+    it("gets a token when using a real requestMaker", async () => {
+        const token = await getToken(makeRequestToMockServer);
+        expect(typeof token).toBe("string");
     });
 });
