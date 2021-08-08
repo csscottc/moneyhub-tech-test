@@ -1,8 +1,10 @@
 const https = require("https");
+const { curryN } = require("ramda");
 
 // Might be worth urlencoding this
 const postData = `scope=transactions&grant_type=client_credentials`;
 
+// Having this token in code is a bad idea.
 const requestOptions = {
   hostname: "obmockaspsp.moneyhub.co.uk",
   port: 443,
@@ -16,7 +18,8 @@ const requestOptions = {
   },
 };
 
-function makeRequest() {
+// Can probably make this testable by mocking https
+function makeRequest(requestOptions, postData) {
   return new Promise((resolve, reject) => {
     const req = https.request(requestOptions, (res) => {
       console.log(`Response Status: ${res.statusCode}`);
@@ -45,6 +48,10 @@ function makeRequest() {
   });
 }
 
+const curriedMakeRequest = curryN(3,makeRequest);
+
+const makeRequestToMockServer = curriedMakeRequest(requestOptions)(postData);
+
 /*
  * Expects a function that returns a Promise<response>
  */
@@ -54,4 +61,4 @@ async function getToken(requestMaker) {
   return token;
 }
 
-module.exports = { getToken };
+module.exports = { getToken, makeRequestToMockServer };
