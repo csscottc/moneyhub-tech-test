@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "node src/index.js",
+    "fmt": "prettier -w src/**/*.js",
     "develop": "nodemon src/index.js"
   },
   "author": "",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
     "supertest": "^6.1.4"
   }
 }
